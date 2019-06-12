@@ -20,7 +20,7 @@ class ParentAdapter(var list: List<ParentModel>) : RecyclerView.Adapter<ParentAd
     }
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
-        var items = mutableListOf<ChildModel>()
+        val items = mutableListOf<ChildModel>()
         items.addAll(list.get(position).children)
         items.add(2, ChildModel(R.drawable.ic_launcher_foreground))
 
@@ -32,9 +32,13 @@ class ParentAdapter(var list: List<ParentModel>) : RecyclerView.Adapter<ParentAd
             layoutManager = childLayoutManager
             adapter = ChildAdapter(list[position])
         }
+
+        holder.recyclerView.scrollToPosition(2)
     }
 
     class ParentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val recyclerView: RecyclerView = view.childRecyclerView
+
+
     }
 }
